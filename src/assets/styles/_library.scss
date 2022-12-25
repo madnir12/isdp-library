@@ -1,0 +1,19 @@
+.library-container{
+          .books-container{
+                    display: flex;
+                    justify-content: center;
+                    padding: 1.5vw;
+                    gap: 1rem;
+                    flex-wrap: wrap;
+                    .single-item{
+                              background: var(--clr-primary-10);
+                              border-radius: 5px;
+                              width: 270px;
+                              padding: 10px;
+                              img{
+                                        width: 250px;
+                                        height: 350px;
+                              }
+                    }
+          }
+}
