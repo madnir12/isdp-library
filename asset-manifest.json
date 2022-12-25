@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/isdp-library/static/css/main.36250a74.css",
+    "main.js": "/isdp-library/static/js/main.64f8ed84.js",
+    "static/media/noorehuda Regular.ttf": "/isdp-library/static/media/noorehuda Regular.36408d16da437c112e1f.ttf",
+    "index.html": "/isdp-library/index.html",
+    "main.36250a74.css.map": "/isdp-library/static/css/main.36250a74.css.map",
+    "main.64f8ed84.js.map": "/isdp-library/static/js/main.64f8ed84.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.36250a74.css",
+    "static/js/main.64f8ed84.js"
+  ]
+}
