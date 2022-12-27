@@ -9,7 +9,6 @@ function SurahTest({ name, ayahs, surah, handleData, surahindex, playButtonDispl
         media.current.play()
       }
       else{
-        console.log("entered in pause")
         media.current.pause()
       } 
     } else {
@@ -22,7 +21,7 @@ function SurahTest({ name, ayahs, surah, handleData, surahindex, playButtonDispl
  
   function nextAyah() {
     if (currentIndex === ayahs.length - 1) {
-      setCurrentIndex(0)
+      console.log("next ayahs")
       setIsPlaying(false)
       setSurahStatus("ended")
       return 
@@ -32,36 +31,37 @@ function SurahTest({ name, ayahs, surah, handleData, surahindex, playButtonDispl
   
 
   useEffect(() => {
-    
+    console.log(surahStatus)
+    console.log(currentIndex + " " + media.current.src)
     if (isPlaying) {
       if (surahStatus === "ended") {
         setSurahStatus("started")
-
-      } else if (surahStatus === "paused") setSurahStatus("started")
+      } else if (surahStatus === "paused"){
+        setSurahStatus("started")
+       
+      }
     } else {
       if (surahStatus === "started") {
         setSurahStatus("paused")
-      } 
+      }
     }
-    
   }, [isPlaying])
   useEffect(() => {
     if(surahStatus === "started") {
-      console.log("entered")
-      media.current.src = ayahs[currentIndex].audio
-      media.current.play()
-      media.current.addEventListener("ended", nextAyah, {once: true})
+      if(currentIndex !== ayahs.length -1 && media.current.src === ayahs[currentIndex].audio){
+        media.current.play()
+        // media.current.addEventListener("ended",nextAyah,{once: true})
+        // return ()=> media.current.removeEventListener("ended",nextAyah,{once: true})
+
+      } else {
+        setCurrentIndex(0)
+      }
     }
     else if (surahStatus === "paused") media.current.pause()
-    return ()=>{
-      media.current.removeEventListener("ended",nextAyah, {once: true})
-    }
-
+    
   }, [surahStatus])
   useEffect(() => {
-    console.log("index is changed and current index is " + currentIndex)
     if(surahStatus === "started") {
-      console.log("entered")
       media.current.src = ayahs[currentIndex].audio
       media.current.play()
       media.current.addEventListener("ended", nextAyah, {once: true})
@@ -71,6 +71,7 @@ function SurahTest({ name, ayahs, surah, handleData, surahindex, playButtonDispl
     }
     
   }, [currentIndex])
+  
   const PROPS_FOR_SURAH_CONTENT = {
     media,
     playButtonDisplay,

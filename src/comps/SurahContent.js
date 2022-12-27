@@ -3,7 +3,6 @@ import Button from './Button';
 
 
 function SurahContent({media,playButtonDisplay,isPlaying,setIsPlaying,name,ayahs,surahindex,currentIndex,setCurrentIndex,playAudio,surahStatus,surah,nextAyah,surahTranslation}) {
-  console.log(surahTranslation)
   return (
           <div className="surah-content">
           <audio ref={media} src=""></audio>
@@ -28,7 +27,6 @@ function SurahContent({media,playButtonDisplay,isPlaying,setIsPlaying,name,ayahs
                    <p className='arabic1' onClick={() => {
                     if(surahStatus === "ended" || surahStatus === "paused") playAudio(ayah.audio)
                     else {
-                      media.current.removeEventListener("ended", nextAyah, {once: true})
                       setCurrentIndex(ayah.numberInSurah -1)
                     }
                   }}>{part2}</p> <span><span>{ayah.numberInSurah}</span></span>

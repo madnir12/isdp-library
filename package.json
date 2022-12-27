@@ -1,7 +1,7 @@
 {
   "name": "reminder",
   "version": "0.1.0",
-  "homepage": "https://madnir12.github.io/isdpbatch2022",
+  "homepage": "https://madnir12.github.io/isdp-library",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -9,7 +9,6 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^1.2.1",
     "firebase": "^9.15.0",
-    "gh-pages": "^4.0.0",
     "node-sass": "^8.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -39,5 +38,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^4.0.0",
+    "install": "^0.13.0",
+    "npm": "^9.2.0"
   }
 }

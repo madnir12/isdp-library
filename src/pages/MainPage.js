@@ -1,4 +1,4 @@
-// import axios from 'axios';
+import axios from 'axios';
 import Library from '../comps/Library'
 import {BiSearchAlt2} from 'react-icons/bi'
 import {FaBookReader} from 'react-icons/fa'
@@ -14,9 +14,7 @@ function MainPage() {
   const [name, setname] = useState("")
   const [ayahs, setayahs] = useState([])
   const [surahindex, setsurahindex] = useState()
-  const [displayName, setDisplayName] = useState("")
-  const [image, setImage] = useState()
-  const [email, setEmail] = useState()
+  const [userProfile, setUserProfile] = useState({})
   const [profileDisplay, setProfileDisplay] = useState(false)
   const [dashBoardView, setDashBoardView] = useState("library")
   const [searchValue, setSearchValue] = useState()
@@ -25,26 +23,25 @@ function MainPage() {
   const [playButtonDisplay, setPlayButtonDisplay] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
   const [surahStatus, setSurahStatus] = useState("ended")
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const [currentIndex, setCurrentIndex] = useState(2)
   const [surahTranslation, setSurahTranslation] = useState([])
-  const url = "http://api.alquran.cloud/v1/quran/ar.alafasy"
+  const url = "https://api.alquran.cloud/v1/quran/ar.alafasy"
   const fetchSurahs = async () => {
-    // axios.get(url).then((res)=>{
-    //   console.log(res.data.data.surahs)
-    //   setsurah(res.data.data.surahs)
-    //   setsurahData(res.data)
-    // })
+    
     try {
       const response = await fetch(url)
       const tempdata = await response.json()
+      console.log(tempdata)
       setsurah(tempdata.data.surahs)
       setsurahData(tempdata)
     } catch (error) {
+      console.log(error)
     }
-    // fetching  surah translation
+    //fetching  surah translation
     try {
       const response = await fetch("https://api.alquran.cloud/v1/quran/ur.jalandhry")
       const tempdata = await response.json()
+      console.log(tempdata)
       setSurahTranslation(tempdata.data.surahs)
     } catch (error) {
     }
@@ -52,11 +49,7 @@ function MainPage() {
   useEffect(() => {
     fetchSurahs()
     const profileData = getProfile()
-    setDisplayName(profileData.profileName)
-    setEmail(profileData.profileEmail)
-    setImage(profileData.profilePhoto)
-  
-    
+    setUserProfile(profileData)
   },[])
   
   const handleData = (index)=>{
@@ -64,6 +57,7 @@ function MainPage() {
     setayahs(surahData.data.surahs[index].ayahs)
     setsurahindex(index)
   }
+const {profileEmail,profileName,profilePhoto} = userProfile
   return (
     <div className='main-div'>
       <div className="header">
@@ -86,11 +80,11 @@ function MainPage() {
         <div className="profile-container">
           <h4 onClick={()=> setDashBoardView("library")}><VscLibrary/> Library</h4>
           <h4 onClick={()=> setDashBoardView("quran-app")}><FaBookReader/> Quran App</h4>
-          <img src={image} onClick={()=> setProfileDisplay(!profileDisplay)} alt="" />
+          <img src={profilePhoto} onClick={()=> setProfileDisplay(!profileDisplay)} alt="" />
           <div className={profileDisplay ? "profile-dropdown-box" : "profile-dropdown-box closed"}>
-          <img src={image} alt="" />
-          <h5>{displayName}</h5>
-          <p>{email}</p>
+          <img src={profilePhoto} alt="" />
+          <h5>{profileName}</h5>
+          <p>{profileEmail}</p>
           <h4 onClick={()=> handleLogout()}><AiOutlineLogout/> Logout</h4>
           </div>
         </div>

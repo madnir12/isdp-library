@@ -8,7 +8,7 @@ import React, { useState } from 'react'
 function App() {
   
   return (
-    <Router>
+    <Router basename='isdp-library'>
       <Routes>
         <Route path='/' element={<Protected LMT={MainPage}/> }/>
         <Route path='/login' element={<Login />} />
