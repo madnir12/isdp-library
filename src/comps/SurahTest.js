@@ -31,8 +31,6 @@ function SurahTest({ name, ayahs, surah, handleData, surahindex, playButtonDispl
   
 
   useEffect(() => {
-    console.log(surahStatus)
-    console.log(currentIndex + " " + media.current.src)
     if (isPlaying) {
       if (surahStatus === "ended") {
         setSurahStatus("started")

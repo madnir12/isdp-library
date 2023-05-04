@@ -20,7 +20,7 @@ const firebaseConfig = {
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-const auth = getAuth();
+const auth = getAuth(app);
 export const signinWidthGoogle = ()=>{
   const provider = new GoogleAuthProvider(app);
 

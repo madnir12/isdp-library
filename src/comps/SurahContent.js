@@ -3,14 +3,16 @@ import Button from './Button';
 
 
 function SurahContent({media,playButtonDisplay,isPlaying,setIsPlaying,name,ayahs,surahindex,currentIndex,setCurrentIndex,playAudio,surahStatus,surah,nextAyah,surahTranslation}) {
+  console.log("surah translation: "+surahTranslation.length+"surah: "+surah.length)
   return (
+          <>
           <div className="surah-content">
           <audio ref={media} src=""></audio>
           <Button playButtonDisplay={playButtonDisplay} isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
           <h3 className='arabic'>{name} </h3>
           <div className='arabic'>
             {
-              ayahs.map((ayah, index) => {
+              surahTranslation.length !== 0 && ayahs.length !== 0 && ayahs.map((ayah, index) => {
                 let part1, part2;
                 if (index === 0 && surahindex > 0 && surahindex !== 8) {
                   let arr = ayah.text.split("بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ");
@@ -66,6 +68,7 @@ function SurahContent({media,playButtonDisplay,isPlaying,setIsPlaying,name,ayahs
             }
           </div>
         </div>
+          </>
   )
 }
 
